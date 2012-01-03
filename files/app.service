@@ -1,0 +1,15 @@
+[Unit]
+Description=$APPDESC
+After=network.target
+
+[Service]
+Type=forking
+RemainAfterExit=yes
+PIDFile=/var/run/$APPNAME.pid
+ExecStartPre=/bin/rm -f /var/run/$APPNAME.pid
+ExecStart=$RUNNER
+ExecStop=/bin/kill -TERM $MAINPID
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,30 @@
+#!/bin/bash
+clear
+echo "-----------------------------------------------------------------------------"
+echo "Sua aplicação deve estar habilitada para rodar como root e seu SO deve ter"
+echo "o Systemd configurado e em execução."
+echo "-----------------------------------------------------------------------------"
+echo ""
+echo "Configurando a aplicação como serviço do Systemd............................."
+echo ""
+echo "Qual o nome da aplicação? (não use espaço ou caracteres especiais)"
+read APPNAME
+echo "Dê uma descrição para o serviço (seja breve)"
+read APPDESC
+echo "Qual o caminho completo para a aplicação (incluindo o arquivo .js)"
+read -e FULLPATH
+echo "----------------------------------------------------------------------------"
+
+echo "Instalando script de inicialização em /usr/local/bin"
+RUNNER=/usr/local/bin/$APPNAME
+echo "$(eval "echo \"$(cat ./files/runner.sh)\"")" > $RUNNER
+chmod +x $RUNNER
+
+echo "Instalando serviço"
+SERVICE=$APPNAME.service
+echo "$(eval "echo \"$(cat ./files/app.service)\"")" > /etc/systemd/system/$SERVICE
+/bin/systemctl enable $SERVICE
+/bin/systemctl start $SERVICE
+
+echo "Configuração concluída......................................................"
+echo "Verifique o status do serviço rodando systemctl status $SERVICE"
