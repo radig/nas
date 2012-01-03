@@ -13,7 +13,7 @@ h2. Uso
 # Baixe os arquivos do repositório
 # Faça o login como usuário root
 # Execute o comando
-bc. # ./config
+@# ./config@
 
 h2. Licença
 
