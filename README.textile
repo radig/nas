@@ -1,0 +1,22 @@
+h1. NAS - Node As Service
+
+Script que configura sua aplicação node.js como um serviço em um SO Linux.
+
+h2. Requisitos
+
+* Systemd instalado e em execução
+* Node.js propriamente instalado e configurado para rodar sua aplicação
+* Acesso root ao sistema para configuração
+
+h2. Uso
+
+# Baixe os arquivos do repositório
+# Faça o login como usuário root
+# Execute o comando
+bc. # ./config
+
+h2. Licença
+
+Copyright® "Radig Soluções em TI":http://radig.com.br
+
+Licensiado pela "MIT LICENSE":http://www.opensource.org/licenses/mit-license.php
